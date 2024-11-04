@@ -14,9 +14,9 @@ class MikroTikController extends Controller
     {
         // Crea el cliente con las credenciales de MikroTik
         $this->client = new Client([
-            'host' => env('MIKROTIK_HOST', '192.168.0.100'), // IP de MikroTik desde tu archivo .env
-            'user' => env('MIKROTIK_USER', 'admin'), // Usuario desde tu archivo .env
-            'pass' => env('MIKROTIK_PASS', 'rosas'), // Contraseña desde tu archivo .env
+            'host' => env('MIKROTIK_HOST', '192.168.116.125'), 
+            'user' => env('MIKROTIK_USER', 'admin'), 
+            'pass' => env('MIKROTIK_PASS', 'rosas'),
         ]);
     }
 
@@ -33,4 +33,36 @@ class MikroTikController extends Controller
             return response()->json(['error' => 'No se pudo conectar a MikroTik: ' . $e->getMessage()], 500);
         }
     }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'password' => 'required|string',
+            'ip' => 'required|ip',
+        ]);
+
+        try {
+            // Crea el cliente con los datos recibidos desde el formulario
+            $client = new Client([
+                'host' => $request->ip,
+                'user' => $request->name,
+                'pass' => $request->password,
+            ]);
+
+            // Intenta obtener información del sistema para verificar la conexión
+            $query = new Query('/system/resource/print');
+            $response = $client->query($query)->read();
+
+            // Redirige al usuario a la URL de Webfig
+            return redirect()->away('http://192.168.116.125/webfig/#Quick_Set');
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'No se pudo conectar a MikroTik: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
+
 }

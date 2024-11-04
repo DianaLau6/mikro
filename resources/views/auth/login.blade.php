@@ -22,10 +22,9 @@
         </div>
 
         <form action="{{ route('login') }}" method="POST" class="space-y-4">
-            @csrf
             <div>
                 <label for="name" class="block text-sm font-medium">Name</label>
-                <input type="text" name="name" id="name" required
+                <input type="text" name="user" id="user" required
                     class="w-full px-3 py-2 mt-1 text-black bg-transparent border-b border-white focus:outline-none focus:border-blue-300">
             </div>
 
