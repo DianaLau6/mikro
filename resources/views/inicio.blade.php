@@ -22,7 +22,7 @@
     <main class="flex flex-col items-center justify-center min-h-full space-y-6 px-4 mt-20">
         <!-- Opciones de navegación -->
         <div class="grid grid-cols-2 gap-6 max-w-md ">
-            <div class="p-1 w-80 bg-gray-300 rounded-lg text-center shadow">
+            <div class="p-1 w-80 bg-gray-800 rounded-lg text-center shadow">
                 <div >
                     <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/228BE6/final-state.png" alt="final-state"/>
                 </div>
