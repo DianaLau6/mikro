@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'stripe/*',
             'http://example.com/foo/bar',
             'http://localhost:8000/login',
+            'http://localhost:8000/*',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
