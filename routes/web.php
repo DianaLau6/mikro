@@ -23,9 +23,18 @@ Route::get('/mikrotik/address', function () {
     return view('address');
 })->name('mikrotik.address.form');
 
+Route::post('', [MikroTikController::class, 'updateIp'])->name('update.ip');
+
+
+
+
 Route::get('/crear/usuario', function () {
     return view('Users.CrearUsuario');
 })->name('Usuario');
+
+Route::get('/Internet', function () {
+    return view('queues');
+})->name('Internet');
 
 
 
